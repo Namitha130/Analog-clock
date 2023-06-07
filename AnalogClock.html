@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog clock </title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+
+        #minHand {
+            width: 2px;
+            height: 160px;
+            background: linear-gradient(rgb(33, 172, 54) 0%, rgb(33, 172, 54) 50%, transparent 50%, transparent 100%);
+            /* background-color: black; */
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+
+        #hourHand {
+            width: 3px;
+            background: linear-gradient(rgb(9, 9, 150) 0%, rgb(9, 9, 150) 50%, transparent 50%, transparent 100%);
+
+            height: 130px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+
+        #secHand {
+            width: 2px;
+            height: 200px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            background: linear-gradient(to top, rgb(234, 13, 13) 50%, transparent 50%, transparent 100%);
+        }
+
+        #midpoint {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./images/analog clock.jpg" alt="">
+
+    <div id="midpoint">
+    </div>
+
+    <div id="minHand">
+    </div>
+
+    <div id="hourHand">
+    </div>
+
+    <div id="secHand">
+    </div>
+
+    <script>
+        function displaytime() {
+
+            let secondhand = document.getElementById("secHand");
+            let minutehand = document.getElementById("minHand");
+            let hourhand = document.getElementById("hourHand");
+            // console.log(secondhand ,minutehand,hourhand);
+
+
+            let d = new Date();
+
+            let seconds = d.getSeconds();
+            let minutes = d.getMinutes();
+            let hours = d.getHours();
+            console.log(seconds, minutes, hours);
+
+            secondhand.style.transform = `translate(-50%,-50%) rotate(${seconds * 6}deg)`
+            minutehand.style.transform = `translate(-50%,-50%) rotate(${minutes * 6}deg)`
+            hourhand.style.transform = `translate(-50%,-50%) rotate(${(hours * 30) + (minutes * 0.5)}deg)`
+        }
+
+        setInterval(() => { displaytime() }, 1000)
+    </script>
+</body>
+
+</html>
